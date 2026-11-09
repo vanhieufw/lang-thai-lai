@@ -17,6 +17,7 @@
   <script src="./panorama.js" defer></script>
   <script src="./hero.js" defer></script>
   <script src="./quiz.js" defer></script>
+  <script src="./trip.js" defer></script>
 </head>
 <body>
   <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -118,36 +119,65 @@
       <div class="shell">
         <div class="section-heading">
           <div><p class="section-label">Đi một vòng quanh làng</p><h2>Khám phá Thái Lai</h2></div>
-          <p>Từ mái đình đến mâm cơm quê, mỗi điểm dừng kể một phần câu chuyện của làng.</p>
+          <div class="explore-shortcut"><p>Bốn điểm để hiểu nếp làng, từ mái đình và nhà rường đến khu vườn và bến sông.</p><a class="text-link" href="#lich-trinh">Lập lịch ghé làng <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a></div>
         </div>
-        <div class="experience-grid">
-          <article class="experience" id="diem-nha">
-            <div class="experience-image"><img src="./assets/nha-co-go.webp" width="1000" height="665" loading="lazy" alt="Cột gỗ và đèn treo trong không gian nhà cổ Tích Thiện Đường"></div>
+        <div class="experience-grid place-grid">
+          <article class="experience place-card" id="diem-dinh">
+            <div class="experience-image"><img src="./assets/dinh.webp" width="1200" height="900" loading="lazy" alt="Cổng và hàng trụ của Đình Thái Lai"><span class="place-index" aria-hidden="true">01</span></div>
             <div class="experience-copy">
-              <p class="experience-type">Kiến trúc</p>
+              <p class="experience-type">Di tích lịch sử – văn hóa</p>
+              <h3>Đình làng Thái Lai</h3>
+              <p>Từ cổng làng qua khoảng sân đến chính điện, đình lưu dấu đời sống thờ tự và sinh hoạt của cộng đồng Thái Lai.</p>
+              <div class="place-actions">
+                <a class="button button-dark" href="https://smarttravel-vr.mobifone.vn/vr-tour/vr360-xa-ba-na" data-open-vr target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-camera"/></svg> Xem 360°</a>
+                <a class="button button-light place-map" href="https://www.google.com/maps/search/?api=1&amp;query=%C4%90%C3%ACnh%20l%C3%A0ng%20Th%C3%A1i%20Lai%2C%20x%C3%A3%20B%C3%A0%20N%C3%A0%2C%20%C4%90%C3%A0%20N%E1%BA%B5ng" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg> Bản đồ</a>
+                <button class="place-save" type="button" data-pick="dinh" aria-pressed="false" hidden><span data-pick-label>Thêm vào lịch</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="experience place-card" id="diem-nha">
+            <div class="experience-image"><img src="./assets/nha-co-san.webp" width="1200" height="900" loading="lazy" alt="Mái ngói và khoảng sân nhà cổ Tích Thiện Đường"><span class="place-index" aria-hidden="true">02</span></div>
+            <div class="experience-copy">
+              <p class="experience-type">Nhà rường</p>
               <h3>Tích Thiện Đường</h3>
-              <p>Quan sát mái ngói âm dương và những đường chạm gỗ trong ngôi nhà rường ba gian hai chái. Đây là nhà của một gia đình địa phương. Hãy hỏi trước khi vào hoặc chụp ảnh trong nhà.</p>
-              <a class="text-link" href="https://nhandan.vn/nha-co-tich-thien-duong-post771159.html" target="_blank" rel="noopener">Đọc về nhà cổ <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg></a>
+              <p>Ngôi nhà rường ba gian hai chái nằm trong Đỗ Gia Viên. Khi ghé thăm, để ý mái ngói âm dương và chi tiết chạm trên gỗ.</p>
+              <div class="place-actions">
+                <a class="button button-dark" href="#thu-vien" data-photo-group="nha" data-viewer-label="Tích Thiện Đường"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-camera"/></svg> Xem tour ảnh</a>
+                <a class="button button-light place-map" href="https://www.google.com/maps/search/?api=1&amp;query=Nh%C3%A0%20c%E1%BB%95%20T%C3%ADch%20Thi%E1%BB%87n%20%C4%90%C6%B0%E1%BB%9Dng%2C%20Th%C3%A1i%20Lai%2C%20%C4%90%C3%A0%20N%E1%BA%B5ng" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg> Bản đồ</a>
+                <button class="place-save" type="button" data-pick="nha" aria-pressed="false" hidden><span data-pick-label>Thêm vào lịch</span></button>
+              </div>
             </div>
           </article>
-          <article class="experience" id="diem-dinh">
-            <div class="experience-image"><img src="./assets/dinh.webp" width="1200" height="900" loading="lazy" alt="Hàng trụ và bậc gạch trước Đình Thái Lai"></div>
+          <article class="experience place-card" id="diem-vuon">
+            <div class="experience-image"><img src="./assets/hero.webp" width="841" height="473" loading="lazy" alt="Lối vườn với cây xanh và mái ngói trong khu nhà cổ"><span class="place-index" aria-hidden="true">03</span></div>
             <div class="experience-copy">
-              <p class="experience-type">Di sản làng</p>
-              <h3>Đình Thái Lai</h3>
-              <p>Ghé khoảng sân trước, nhìn lên mái đình và các trụ cổng. Đây là không gian thờ tự và sinh hoạt văn hóa gắn với nhiều thế hệ người dân Thái Lai.</p>
-              <a class="text-link" href="#tham-quan-360">Xem lối vào đình 360° <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+              <p class="experience-type">Không gian nhà vườn</p>
+              <h3>Đỗ Gia Viên</h3>
+              <p>Khu nhà vườn bao quanh Tích Thiện Đường, có bóng cây, tiểu cảnh và nhà chòi. Bạn có thể ghé cả hai trong cùng một chặng.</p>
+              <div class="place-actions">
+                <a class="button button-dark" href="#thu-vien" data-photo-group="vuon" data-viewer-label="Đỗ Gia Viên"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-camera"/></svg> Xem tour ảnh</a>
+                <a class="button button-light place-map" href="https://www.google.com/maps/search/?api=1&amp;query=Nh%C3%A0%20c%E1%BB%95%20T%C3%ADch%20Thi%E1%BB%87n%20%C4%90%C6%B0%E1%BB%9Dng%2C%20Th%C3%A1i%20Lai%2C%20%C4%90%C3%A0%20N%E1%BA%B5ng" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg> Bản đồ</a>
+                <button class="place-save" type="button" data-pick="vuon" aria-pressed="false" hidden><span data-pick-label>Thêm vào lịch</span></button>
+              </div>
             </div>
           </article>
-          <article class="experience" id="diem-am-thuc">
-            <div class="experience-image"><img src="./assets/am-thuc.webp" width="1000" height="665" loading="lazy" alt="Người dân giới thiệu các món ăn địa phương ở Thái Lai"></div>
+          <article class="experience place-card" id="diem-ben">
+            <div class="experience-image"><img src="./assets/ben-thai-lai.webp" width="665" height="414" loading="lazy" alt="Bến Thái Lai bên dòng Túy Loan trong ảnh tư liệu"><span class="place-index" aria-hidden="true">04</span></div>
             <div class="experience-copy">
-              <p class="experience-type">Ẩm thực</p>
-              <h3>Vị quê xứ Quảng</h3>
-              <p>Hỏi thử mì Quảng, bánh tráng Túy Loan và các loại bánh dân dã của vùng. Nếu đi nhóm đông, hỏi trước về khả năng phục vụ của các hộ địa phương.</p>
-              <a class="text-link" href="https://baodanang.vn/ve-lang-thai-lai-trai-nghiem-van-hoa-am-thuc-dac-sac-3196547.html" target="_blank" rel="noopener">Đọc về món quê <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg></a>
+              <p class="experience-type">Cảnh quan ven sông</p>
+              <h3>Bến Thái Lai</h3>
+              <p>Bến thủy nội địa nằm bên sông Túy Loan, gần khu nhà cổ. Nếu muốn đi thuyền, hỏi Trung tâm Hỗ trợ Du khách về tuyến đang khai thác.</p>
+              <div class="place-actions">
+                <a class="button button-dark" href="#thu-vien" data-photo-group="ben" data-viewer-label="Bến Thái Lai"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-camera"/></svg> Xem tour ảnh</a>
+                <a class="button button-light place-map" href="https://www.google.com/maps/search/?api=1&amp;query=B%E1%BA%BFn%20th%E1%BB%A7y%20n%E1%BB%99i%20%C4%91%E1%BB%8Ba%20Th%C3%A1i%20Lai%2C%20x%C3%A3%20B%C3%A0%20N%C3%A0%2C%20%C4%90%C3%A0%20N%E1%BA%B5ng" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg> Bản đồ</a>
+                <button class="place-save" type="button" data-pick="ben" aria-pressed="false" hidden><span data-pick-label>Thêm vào lịch</span></button>
+              </div>
             </div>
           </article>
+        </div>
+        <div class="explore-note" id="diem-am-thuc">
+          <div><h3>Ghé thêm một bữa quê</h3><p>Hỏi người dân về mì Quảng, bánh tráng Túy Loan và các món bánh địa phương. Nếu đi nhóm đông, nên hỏi trước về khả năng phục vụ.</p></div>
+          <a class="text-link" href="https://baodanang.vn/ve-lang-thai-lai-trai-nghiem-van-hoa-am-thuc-dac-sac-3196547.html" target="_blank" rel="noopener">Đọc về món quê <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg></a>
         </div>
       </div>
     </section>
@@ -157,7 +187,7 @@
         <div>
           <p class="section-label">Tham quan ảo</p>
           <h2 id="vr-title">Đình Thái Lai<br>qua góc nhìn 360°</h2>
-          <p>Đứng trước lối vào đình và xoay nhìn quanh qua ảnh toàn cảnh chụp tại làng.</p>
+          <p>Bắt đầu ở lối vào làng, rồi chuyển sang sân đình và chính điện. Cả ba cảnh đều là ảnh toàn cảnh chụp tại chỗ.</p>
           <a class="button button-gold" href="https://smarttravel-vr.mobifone.vn/vr-tour/vr360-xa-ba-na" data-open-vr target="_blank" rel="noopener">Tham quan 360° <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg></a>
           <div><a class="vr-source" href="https://bana.danang.gov.vn/vi/web/xa-ba-na/w/video-huong-dan-nguoi-dan-tham-quan-thuc-te-ao-vr360-xa-ba-na" target="_blank" rel="noopener">Nguồn ảnh 360°: Tour VR360 xã Bà Nà / MobiFone</a></div>
         </div>
@@ -168,14 +198,18 @@
       <div class="shell">
         <div class="section-heading">
           <div><p class="section-label">Album thực địa</p><h2 id="gallery-title">Những góc làng</h2></div>
-          <p>Từ hiên nhà rường đến sân đình, bấm vào từng ảnh để xem rõ hơn và đọc nguồn.</p>
+          <p>Xem cận cảnh nhà cổ, khu vườn và bến sông qua ảnh chụp có chú thích.</p>
         </div>
         <div class="gallery-grid">
-          <a class="gallery-tile gallery-main" href="./assets/hero.webp" data-photo="vinpearl"><img src="./assets/hero.webp" width="1100" height="650" loading="lazy" alt="Vườn ở Thái Lai"><span>Vườn ở Thái Lai <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg></span></a>
-          <a class="gallery-tile" href="./assets/nha-co-go.webp" data-photo="vietnamnet"><img src="./assets/nha-co-go.webp" width="1000" height="665" loading="lazy" alt="Không gian kiến trúc gỗ tại Tích Thiện Đường"><span>Góc nhà rường <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg></span></a>
+          <a class="gallery-tile gallery-main" href="./assets/hero.webp" data-photo="vinpearl" data-tour="vuon" data-note="Lối vườn dẫn qua các tiểu cảnh về phía nhà cổ Tích Thiện Đường."><img src="./assets/hero.webp" width="1100" height="650" loading="lazy" alt="Vườn ở Thái Lai"><span>Vườn ở Thái Lai <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg></span></a>
+          <a class="gallery-tile" href="./assets/nha-co-go.webp" data-photo="vietnamnet" data-tour="nha" data-note="Nhìn dãy cột, kết cấu mái và ánh sáng từ khoảng hiên."><img src="./assets/nha-co-go.webp" width="1000" height="665" loading="lazy" alt="Không gian kiến trúc gỗ tại Tích Thiện Đường"><span>Góc nhà rường <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg></span></a>
           <a class="gallery-tile" href="./assets/dinh.webp" data-photo="kinhtexanh"><img src="./assets/dinh.webp" width="1000" height="665" loading="lazy" alt="Đình làng Thái Lai"><span>Đình Thái Lai <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg></span></a>
-          <a class="gallery-tile" href="./assets/nha-co.webp" data-photo="vietnamnet"><img src="./assets/nha-co.webp" width="1000" height="665" loading="lazy" alt="Gia chủ bên cửa gỗ Tích Thiện Đường"><span>Trước hiên nhà cổ <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg></span></a>
+          <a class="gallery-tile" href="./assets/nha-co.webp" data-photo="vietnamnet" data-tour="nha" data-note="Gian nhà là không gian của một gia đình địa phương. Hãy hỏi trước khi tham quan hoặc chụp ảnh bên trong."><img src="./assets/nha-co.webp" width="1000" height="665" loading="lazy" alt="Gia chủ bên cửa gỗ Tích Thiện Đường"><span>Trước hiên nhà cổ <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg></span></a>
           <a class="gallery-tile" href="./assets/am-thuc.webp" data-photo="baodanang"><img src="./assets/am-thuc.webp" width="1000" height="665" loading="lazy" alt="Các món ăn địa phương được giới thiệu ở Thái Lai"><span>Hương vị địa phương <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg></span></a>
+
+          <a class="gallery-tile" href="./assets/nha-co-san.webp" data-photo="huongsac" data-tour="nha vuon" data-note="Nhà rường ba gian hai chái nằm trong khuôn viên Đỗ Gia Viên."><img src="./assets/nha-co-san.webp" width="1200" height="900" loading="lazy" alt="Mái ngói nhà cổ sau khoảng sân và vườn cây"><span>Khoảng sân nhà cổ <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg></span></a>
+          <a class="gallery-tile" href="./assets/ben-thai-lai.webp" data-photo="ttxvn" data-tour="ben" data-note="Cầu tàu bên sông Túy Loan trong ảnh tư liệu năm 2023. Hỏi trước về tình trạng tiếp cận và các tuyến tàu đang khai thác."><img src="./assets/ben-thai-lai.webp" width="665" height="414" loading="lazy" alt="Bến Thái Lai bên sông Túy Loan"><span>Bến Thái Lai <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg></span></a>
+          <a class="gallery-tile" href="./assets/nha-cho-thai-lai.webp" data-photo="ttxvn" data-tour="ben" data-note="Nhà chờ của bến Thái Lai trong ảnh tư liệu năm 2023."><img src="./assets/nha-cho-thai-lai.webp" width="665" height="440" loading="lazy" alt="Nhà chờ mái ngói tại bến Thái Lai"><span>Nhà chờ bên bến <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg></span></a>
         </div>
       </div>
     </section>
@@ -246,12 +280,36 @@
         </div>
       </div>
       <div class="shell itinerary" id="lich-trinh">
-        <div class="itinerary-heading"><h3>Gợi ý một buổi ở làng</h3><p>Đi theo nhịp của bạn và hỏi trước nếu đi theo nhóm.</p></div>
-        <ol class="itinerary-steps">
-          <li><span aria-hidden="true">01</span><div><h4><a href="#diem-nha">Ghé nhà cổ</a></h4><p>Bắt đầu ở Tích Thiện Đường. Hỏi gia chủ trước khi vào xem gian nhà.</p></div></li>
-          <li><span aria-hidden="true">02</span><div><h4><a href="#diem-dinh">Qua đình làng</a></h4><p>Ngắm cổng và mái đình, rồi dạo qua các ngõ làng. Giữ yên lặng ở nơi thờ tự.</p></div></li>
-          <li><span aria-hidden="true">03</span><div><h4><a href="#diem-am-thuc">Dừng ăn món quê</a></h4><p>Hỏi người dân về chỗ ăn gần đó và thử một món xứ Quảng nếu có dịp.</p></div></li>
-        </ol>
+        <div class="itinerary-heading"><h3>Lịch ghé làng của bạn</h3><p>Chọn những điểm muốn ghé. Nhà cổ và Đỗ Gia Viên dùng chung một điểm trên bản đồ.</p></div>
+        <div class="trip-grid" data-trip hidden>
+          <fieldset class="trip-choices">
+            <legend>Chọn điểm tham quan</legend>
+            <label><input type="checkbox" value="dinh" data-trip-choice data-pin="Đình làng Thái Lai, xã Bà Nà, Đà Nẵng" data-anchor="diem-dinh"><span>Đình làng Thái Lai</span></label>
+            <label><input type="checkbox" value="nha" data-trip-choice data-pin="Nhà cổ Tích Thiện Đường, Thái Lai, Đà Nẵng" data-anchor="diem-nha"><span>Tích Thiện Đường</span></label>
+            <label><input type="checkbox" value="vuon" data-trip-choice data-pin="Nhà cổ Tích Thiện Đường, Thái Lai, Đà Nẵng" data-anchor="diem-vuon"><span>Đỗ Gia Viên</span></label>
+            <label><input type="checkbox" value="ben" data-trip-choice data-pin="Bến thủy nội địa Thái Lai, xã Bà Nà, Đà Nẵng" data-anchor="diem-ben"><span>Bến Thái Lai</span></label>
+            <button type="button" class="text-link trip-preset" data-trip-preset>Dùng lịch gợi ý <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></button>
+          </fieldset>
+          <div class="trip-summary">
+            <h4>Các điểm đã chọn</h4>
+            <p class="trip-count" data-trip-count role="status">0 điểm đã chọn</p>
+            <p class="trip-note" data-trip-note>Lựa chọn được lưu trong trình duyệt trên thiết bị này.</p>
+            <p data-trip-empty>Chọn một điểm để bắt đầu hoặc dùng lịch gợi ý.</p>
+            <ol class="trip-stops" data-trip-stops hidden></ol>
+            <div class="trip-actions" data-trip-actions hidden>
+              <a class="button button-dark" data-trip-route target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg> Mở lộ trình</a>
+              <button class="button button-light" type="button" data-trip-download><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-download"/></svg> Tải lịch</button>
+              <button class="trip-reset" type="button" data-trip-reset>Bỏ chọn tất cả</button>
+            </div>
+          </div>
+        </div>
+        <noscript><p>Gợi ý ghé đình làng trước, sau đó thăm Đỗ Gia Viên và nhà cổ Tích Thiện Đường trong cùng một chặng.</p></noscript>
+      </div>
+      <div class="shell visit-faq" id="hoi-dap">
+        <h3>Trước khi đi</h3>
+        <details><summary>Có cần hẹn trước khi ghé nhà cổ và Đỗ Gia Viên?</summary><p>Hai điểm nằm trong cùng một khuôn viên gia đình. Bạn nên hỏi gia chủ trước khi vào, chụp ảnh bên trong hoặc ghé theo đoàn.</p></details>
+        <details><summary>Bến Thái Lai có lịch tàu du lịch không?</summary><p>Để biết tuyến nào đang khai thác và có thể đón khách, hãy hỏi <a href="tel:+842363550111">Trung tâm Hỗ trợ Du khách Đà Nẵng</a> trước khi lên lịch đi thuyền.</p></details>
+        <details><summary>Nếu chỉ ghé một buổi, nên bắt đầu ở đâu?</summary><p>Có thể ghé đình trước, sau đó đến Đỗ Gia Viên và nhà cổ. Dùng phần Lịch ghé làng để lưu các điểm và mở lộ trình trên Google Maps.</p></details>
       </div>
     </section>
   </main>
@@ -274,7 +332,8 @@
       </nav>
       <div class="footer-links">
         <h2>Lên lịch ghé</h2>
-        <a href="#lich-trinh">Lộ trình gợi ý</a>
+        <a href="#lich-trinh">Lập lịch ghé làng</a>
+        <a href="#hoi-dap">Trước khi đi</a>
         <a href="#lien-he">Chỉ đường và liên hệ</a>
         <p>Trung tâm Hỗ trợ Du khách Đà Nẵng</p>
         <a href="tel:+842363550111"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-call"/></svg> (0236) 3550 111</a>
@@ -298,6 +357,7 @@
           <li><a href="https://baodanang.vn/ve-lang-thai-lai-trai-nghiem-van-hoa-am-thuc-dac-sac-3196547.html" target="_blank" rel="noopener">Báo Đà Nẵng — ảnh ẩm thực của Diệp Như</a></li>
           <li><a href="https://doanhnghiepkinhtexanh.vn/dac-sac-huong-vi-que-huong-tai-lang-du-lich-sinh-thai-cong-dong-thai-lai-a25334.html" target="_blank" rel="noopener">Tạp chí Doanh nghiệp và Kinh tế xanh — ảnh cổng đình</a></li>
           <li><a href="https://bana.danang.gov.vn/vi/web/xa-ba-na/w/video-huong-dan-nguoi-dan-tham-quan-thuc-te-ao-vr360-xa-ba-na" target="_blank" rel="noopener">Cổng thông tin xã Bà Nà — tour VR360 Đình Thái Lai</a></li>
+          <li><a href="https://vnanet.vn/vi/anh/anh-thoi-su-trong-nuoc-1014/nhieu-ben-du-lich-duong-thuy-noi-dia-tai-da-nang-bi-bo-hoang-6895094.html" target="_blank" rel="noopener">Quốc Dũng / TTXVN — ảnh tư liệu Bến Thái Lai (2023)</a></li>
           <li><a href="https://danangfantasticity.com/lien-he/" target="_blank" rel="noopener">Danang Fantasticity — thông tin hỗ trợ du khách</a></li>
         </ul>
       </details>
@@ -306,12 +366,13 @@
   </footer>
 
   <dialog id="photo-viewer" aria-labelledby="photo-title">
-    <div class="viewer-header"><span>Album Thái Lai</span><button type="button" class="icon-button" data-close aria-label="Đóng album"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-close"/></svg></button></div>
+    <div class="viewer-header"><span data-viewer-label>Album Thái Lai</span><button type="button" class="icon-button" data-close aria-label="Đóng album"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-close"/></svg></button></div>
     <div class="viewer-stage"><img alt=""><button type="button" class="icon-button previous" data-step="-1" aria-label="Ảnh trước"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-left"/></svg></button><button type="button" class="icon-button next" data-step="1" aria-label="Ảnh tiếp theo"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-right"/></svg></button></div>
-    <div class="viewer-caption"><div><h2 id="photo-title"></h2><a data-source href="https://baodanang.vn/" target="_blank" rel="noopener"></a></div><span data-count aria-live="polite"></span></div>
+    <div class="viewer-caption"><div><h2 id="photo-title"></h2><p data-photo-description hidden></p><a data-source href="https://baodanang.vn/" target="_blank" rel="noopener"></a></div><span data-count aria-live="polite"></span></div>
   </dialog>
   <dialog id="vr-viewer" aria-labelledby="vr-viewer-title">
     <div class="viewer-header"><h2 id="vr-viewer-title">Đình Thái Lai <span>360°</span></h2><button type="button" class="icon-button" data-vr-close aria-label="Đóng ảnh 360 độ"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-close"/></svg></button></div>
+    <div class="vr-scenes"><label for="vr-scene">Chọn cảnh</label><select id="vr-scene"><option value="loi-vao">Lối vào làng</option><option value="san-dinh">Sân đình</option><option value="chinh-dien">Chính điện</option></select></div>
     <div class="panorama-stage">
       <canvas aria-label="Ảnh toàn cảnh Đình Thái Lai. Dùng các phím mũi tên để xoay." aria-describedby="vr-hint" tabindex="0"></canvas>
       <p data-vr-status role="status">Đang tải ảnh toàn cảnh…</p>

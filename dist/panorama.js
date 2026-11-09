@@ -2,7 +2,12 @@ const panorama = document.querySelector("#vr-viewer");
 const canvas = panorama.querySelector("canvas");
 const status = panorama.querySelector("[data-vr-status]");
 const triggers = document.querySelectorAll("[data-open-vr]");
-const panoramaData = "./assets/dinh-pano.js";
+const scenePicker = panorama.querySelector("#vr-scene");
+const scenes = {
+  "loi-vao": { asset: "dinh-pano.js", payload: "thaiLaiPanoramaData", label: "Lối vào làng", pitch: 0.31 },
+  "san-dinh": { asset: "san-dinh-pano.js", payload: "thaiLaiCourtyardData", label: "Sân đình", pitch: 0.04 },
+  "chinh-dien": { asset: "chinh-dien-pano.js", payload: "thaiLaiShrineData", label: "Chính điện", pitch: 0.03 },
+};
 const minFov = 36;
 const maxFov = 100;
 let yaw = 0;
@@ -11,7 +16,8 @@ let fov = 86;
 let pointer;
 let trigger;
 let renderer;
-let loading;
+let loadedScene;
+let revision = 0;
 let frame;
 
 const vertexShader = [
@@ -52,13 +58,13 @@ function compile(gl, type, source) {
   return shader;
 }
 
-function loadPanoramaImage() {
+function loadPanoramaImage(scene) {
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
-    script.src = panoramaData;
+    script.src = "./assets/" + scene.asset;
     script.onload = () => {
-      const url = window.thaiLaiPanoramaData;
-      delete window.thaiLaiPanoramaData;
+      const url = window[scene.payload];
+      delete window[scene.payload];
       script.remove();
       if (url) resolve(url);
       else reject(new Error("Missing panorama image"));
@@ -70,11 +76,7 @@ function loadPanoramaImage() {
     document.head.append(script);
   });
 }
-async function createRenderer() {
-  const image = new Image();
-  image.src = await loadPanoramaImage();
-  await image.decode();
-
+function createRenderer() {
   const gl = canvas.getContext("webgl", { alpha: false, antialias: false });
   if (!gl) throw new Error("WebGL unavailable");
 
@@ -103,19 +105,21 @@ async function createRenderer() {
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
   const textureLimit = gl.getParameter(gl.MAX_TEXTURE_SIZE);
-  let source = image;
-  if (image.width > textureLimit) {
-    source = document.createElement("canvas");
-    source.width = textureLimit;
-    source.height = Math.round(textureLimit * image.height / image.width);
-    source.getContext("2d").drawImage(image, 0, 0, source.width, source.height);
+  function setImage(image) {
+    let source = image;
+    if (image.width > textureLimit) {
+      source = document.createElement("canvas");
+      source.width = textureLimit;
+      source.height = Math.round(textureLimit * image.height / image.width);
+      source.getContext("2d").drawImage(image, 0, 0, source.width, source.height);
+    }
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source);
+    if (gl.getError() !== gl.NO_ERROR) throw new Error("Cannot load panorama texture");
   }
-  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source);
-  if (gl.getError() !== gl.NO_ERROR) throw new Error("Cannot load panorama texture");
 
   const field = gl.getUniformLocation(program, "field");
   const angle = gl.getUniformLocation(program, "angle");
-  return () => {
+  function render() {
     const ratio = Math.min(devicePixelRatio || 1, 2);
     const width = Math.round(canvas.clientWidth * ratio);
     const height = Math.round(canvas.clientHeight * ratio);
@@ -130,14 +134,15 @@ async function createRenderer() {
     gl.uniform2f(field, span * Math.min(aspect, 1.65), span * Math.min(1, 1.65 / aspect));
     gl.uniform2f(angle, yaw, pitch);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-  };
+  }
+  return { setImage, render };
 }
 
 function draw() {
   if (!panorama.open || !renderer || frame !== undefined) return;
   frame = requestAnimationFrame(() => {
     frame = undefined;
-    if (panorama.open) renderer?.();
+    if (panorama.open) renderer?.render();
   });
 }
 
@@ -161,29 +166,54 @@ function showUnavailable() {
   setStatus("Trình xem 360° chưa tải được. Bạn có thể dùng liên kết Mở tour chính thức bên dưới.");
 }
 
-triggers.forEach((link) => link.addEventListener("click", async (event) => {
+async function selectScene(key) {
+  const scene = scenes[key];
+  const attempt = ++revision;
+  if (key === loadedScene) {
+    setStatus("");
+    draw();
+    return;
+  }
+  setStatus("Đang tải cảnh " + scene.label + "…");
+  try {
+    const image = new Image();
+    image.src = await loadPanoramaImage(scene);
+    await image.decode();
+    if (attempt !== revision || !panorama.open) return;
+    renderer ??= createRenderer();
+    renderer.setImage(image);
+    loadedScene = key;
+    yaw = 0;
+    pitch = scene.pitch;
+    fov = 86;
+    canvas.setAttribute("aria-label", "Ảnh 360° " + scene.label + ". Dùng các phím mũi tên để xoay.");
+    setStatus("");
+    draw();
+  } catch {
+    if (attempt !== revision || !panorama.open) return;
+    if (loadedScene) scenePicker.value = loadedScene;
+    showUnavailable();
+  }
+}
+
+triggers.forEach((link) => link.addEventListener("click", (event) => {
   if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || !panorama.showModal) return;
   event.preventDefault();
   trigger = link;
   panorama.showModal();
-  if (!renderer) {
-    setStatus("Đang tải ảnh toàn cảnh…");
-    try {
-      loading ??= createRenderer();
-      renderer = await loading;
-      setStatus("");
-    } catch {
-      loading = undefined;
-      showUnavailable();
-    }
-  }
-  draw();
+  selectScene(scenePicker.value);
 }));
+scenePicker.addEventListener("change", () => selectScene(scenePicker.value));
 
-canvas.addEventListener("webglcontextlost", () => {
+canvas.addEventListener("webglcontextlost", (event) => {
+  event.preventDefault();
+  revision += 1;
   renderer = undefined;
-  loading = undefined;
+  loadedScene = undefined;
   showUnavailable();
+});
+canvas.addEventListener("webglcontextrestored", () => {
+  if (panorama.open) selectScene(scenePicker.value);
 });
 canvas.addEventListener("pointerdown", (event) => {
   if (!renderer || pointer || event.button !== 0) return;
@@ -224,7 +254,10 @@ panorama.querySelectorAll("[data-vr-zoom]").forEach((button) => {
 panorama.addEventListener("click", (event) => {
   if (event.target === panorama) panorama.close();
 });
-panorama.addEventListener("close", () => trigger?.focus({ preventScroll: true }));
+panorama.addEventListener("close", () => {
+  revision += 1;
+  trigger?.focus({ preventScroll: true });
+});
 new ResizeObserver(draw).observe(canvas);
 
 
