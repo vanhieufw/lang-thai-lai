@@ -48,19 +48,6 @@ window.addEventListener("resize", queueScrollUpdate);
 window.addEventListener("load", queueScrollUpdate);
 updateScroll();
 
-function openPlaceFromHash() {
-  const detail = document.getElementById(location.hash.slice(1));
-  if (detail instanceof HTMLDetailsElement) detail.open = true;
-}
-document.querySelectorAll("[data-place]").forEach((link) => {
-  link.addEventListener("click", () => {
-    const detail = document.getElementById(link.dataset.place);
-    detail.open = true;
-  });
-});
-window.addEventListener("hashchange", openPlaceFromHash);
-openPlaceFromHash();
-
 const viewer = document.querySelector("#photo-viewer");
 const gallery = [...document.querySelectorAll("[data-photo]")];
 const viewerImage = viewer.querySelector("img");
@@ -112,4 +99,3 @@ viewer.addEventListener("click", (event) => {
   if (event.target === viewer) viewer.close();
 });
 viewer.addEventListener("close", () => previousFocus?.focus({ preventScroll: true }));
-
